@@ -15,7 +15,7 @@ Pk, Sk = cmapi.keypair(random_seed())
 e = cmapi.gen_e(random_seed()) # needs to be the same for encryptions (TreeKEM)
 
 # encrypt / decrypt
-c, k = cmapi.encrypt(Pk, e)
+c, k = cmapi.encrypt(Pk)
 k2 = cmapi.decrypt(Sk,c)
 assert k == k2
 
@@ -35,8 +35,8 @@ for i in range(1):
     LChildPk, LChildSk = cmapi.keypair(random_seed())    
     RChildPk, RChildSk = cmapi.keypair(random_seed())
     
-    Lc1, Lk = cmapi.encrypt(LChildPk, e)
-    Rc1, Rk = cmapi.encrypt(RChildPk, e)
+    Lc1, Lk = cmapi.encrypt(LChildPk)
+    Rc1, Rk = cmapi.encrypt(RChildPk)
     
     assert Lk != Rk, "keys are the same"
     

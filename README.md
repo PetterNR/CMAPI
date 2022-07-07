@@ -7,8 +7,8 @@ To get this mess to run requires some prep
 
 run command make 
 ```bash
-<target\>/libkeccak.so
-<target\>/libkeccak.a
+make <target\>/libXKCP.so
+make <target\>/libXKCP.a
 ```
 The make file creates the .so and .a files in the bin/ folder. Copy both and rename to libkeccak.a & libkeccak.so to /usr/lib/ and to the same for the headers to the /usr/include folder. 
 ```bash

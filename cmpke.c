@@ -31,11 +31,10 @@ static PyObject *cm_encrypt(PyObject* self, PyObject* args){
     unsigned char *pk;
     unsigned char key[32];
     unsigned char c[crypto_kem_CIPHERTEXTBYTES];
-    unsigned char *two_e;
     Py_ssize_t pk_size,two_e_size;
-    if (!PyArg_ParseTuple(args, "y#y#", &pk, &pk_size,&two_e, &two_e_size))
+    if (!PyArg_ParseTuple(args, "y#", &pk, &pk_size))
         return NULL;
-    crypto_kem_enc2(c, key, two_e, pk);
+    crypto_kem_enc(c, key, pk);
     return Py_BuildValue("y#y#", c,  crypto_kem_CIPHERTEXTBYTES, key, 32);
 }
 
@@ -48,7 +47,7 @@ static PyObject *cm_decrypt(PyObject* self, PyObject* args){
     if (!PyArg_ParseTuple(args, "y#y#", &sk, &sk_size ,&c, &c_size))
         return NULL;
     
-    crypto_kem_dec2(key, c ,sk);
+    crypto_kem_dec(key, c ,sk);
     return Py_BuildValue("y#", key, 32);
 }
 
